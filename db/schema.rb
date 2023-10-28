@@ -25,12 +25,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_25_085913) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "uid"
-    t.string "pass"
-    t.integer "age"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
