@@ -1,0 +1,58 @@
+a { color:#222222; text-decoration:none;}
+body{
+    display: flex;
+    min-height: 100vh;
+}
+ul{
+    margin-top: 1em;
+}
+y1{
+    margin-left: 30px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+y2{
+   cursor: pointer;
+   text-decoration: none;
+   padding: 0.2em;
+}
+button{
+   width: 15em;
+   height:3em;
+   border-radius: 100vh;
+   background-color: #1da1f2;
+   color: white;
+   border: none;
+   cursor: pointer;
+}
+button:hover{
+   background-color: #4169e1;  
+}
+p1{
+  border: 0.05mm solid #6666;
+  width: 20%;
+  text-align:left;
+}
+p2{
+    padding: 1% 0;
+    flex: 1;
+    border: 0.05mm solid #6666;
+    grid-template-rows: 20% 80%;
+    
+}
+p2_top{
+    margin-top: 1em;
+    padding: 10% 0;
+    text-align: left;
+    grid-row: 1;
+    grid-column: 1;
+}
+p3{ 
+    text-align: left;
+      grid-row: 2;
+      grid-column: 1;
+}
+p{
+    border: 0.01mm solid #6666;
+    
+}

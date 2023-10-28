@@ -1,0 +1,88 @@
+<%= stylesheet_link_tag "index1", :media => "all" %>
+
+<body>
+    <p1>
+        <ul>
+        <y2>
+            <%= link_to ' ホーム ', 'top/main' %>
+        </y2>
+        <ul></ul>
+        <y2>
+            <%= link_to ' 話題を検索', 'tweets/new' %>
+        </y2>
+        <ul></ul>
+        <y2>
+            <%= link_to ' 通知', 'tweets/new' %>
+        </y2>
+        <ul></ul>
+        <y2>
+            <%= link_to ' メッセージ   ', 'tweets/new' %>
+        </y2>
+        <ul></ul>
+        <y2>
+            <%= link_to ' ブックマーク', 'tweets/new' %>
+        </y2>
+    　　<ul></ul><y2><%= link_to ' 新規登録', '/cID' %></y2>
+        <ul></ul>
+        
+        
+       <y2>
+          <% if session[:login_uid]!=nil %>
+                <div id="user-profile" class="visible">
+                  <%= link_to 'ログアウト',  '/top_logout_path'  %>
+                </div>
+          <% else %>
+                    <%= link_to 'ログイン',  '/login' %>
+          <% end %>
+        </y2>
+        <ul></ul>
+        <y2>
+            <%= link_to ' もっと見る', 'top/main' %>
+        </y2>
+        <ul></ul>
+             <% if session[:login_uid]!=nil %>
+        <form action="top/new" >
+            <button type="submit">ツイートする</button>
+        </form>
+        <% else %>
+        <% end %>
+        </ul>
+    </p1>
+    
+    <p2>
+        <p2_top>
+            <y1>ツイート</y1>
+            <y1>ツイートと返信</y1>
+            <y1>メディア</y1>
+            <y1>いいね！</y1>
+        </p2_top>
+    
+    <p3>    
+        <% if flash[:notice] %>
+            <%= flash[:notice] %>
+        <% end %>
+        
+        <% @tweets.each do |e| %>
+        <ul></ul>
+            <k1>
+            <p>
+            <ul></ul>
+                <%= e.message %>
+            <ul></ul>
+              <% if session[:login_uid]!=nil %>
+                <div id="user-profile" class="visible">
+                <%= link_to 'いいね', likes_path(tweet_id: e.id), method: :post %>
+                <%= link_to 'いいね削除', like_path(e), method: :get %>
+                </div>
+          <% else %>
+           <% end %>
+                <%=link_to '削除', "/tweets/#{e.id}", data: { turbo_method: :delete } %>
+                <%=link_to '表示', "/tweets/#{e.id}" %>
+                <%=link_to '編集', "/tweets/#{e.id}/edit" %>
+            </p>
+            </k1>
+        <% end %>
+    </p3>
+    </p2>
+</body>
+
