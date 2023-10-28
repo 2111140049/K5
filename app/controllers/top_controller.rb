@@ -26,7 +26,7 @@ class TopController < ApplicationController
     end
     def show
     @tweets=Tweet.all
-        if session[:login_uid]!=nil
+        if params[:tweet].present?
           @tweet = Tweet.find(session[:login_uid])
           logger.debug("show")
            render "main"
@@ -50,15 +50,17 @@ class TopController < ApplicationController
     def login
         @tweets=Tweet.all
         require 'bcrypt'
+
         if User.find_by(uid: params[:uid]) 
             user =User.find_by(uid: params[:uid])
             
             if BCrypt::Password.new(user.pass) == params[:pass]
-              session[:login_uid] = params[:uid]
-              
-              redirect_to top_main_path and return
+                session[:login_uid] = params[:uid]
+                render "login"
+              else
+                 render "main"
             end
-            render "main"
+            
         end
     end
     def cID

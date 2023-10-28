@@ -12,8 +12,8 @@ Rails.application.routes.draw do
  # get '/like/:id', to: 'likes#destroy', as: 'like'
   get '/likes', to: 'likes#destroy', as: 'like'
   
-  post 'top/login'
-  get '/login', to: 'top#login'
+   post 'top/login'
+   get '/login', to: 'top#login'
   
   get 'top/main',to: 'top#main'
   root 'top#main'
