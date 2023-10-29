@@ -13,9 +13,11 @@ class TopController < ApplicationController
     end
     #___________tweet__________
     def new
+         logger.debug("nn")
       @tweet = Tweet.new
     end
     def create
+         logger.debug("w")
       @tweet = Tweet.new(message: params[:tweet][:message],user_id: session[:login_uid])
       if @tweet.save
         flash[:notice] = '1レコード追加しました'
@@ -63,9 +65,9 @@ class TopController < ApplicationController
                 if BCrypt::Password.new(user.pass)== params[:pass]
                     session[:login_uid] = params[:uid]
                       logger.debug("s")
-                    render "main"
+                       redirect_to '/'
                 else
-                        logger.debug("w")
+          
                      render "login"
                 end
                 

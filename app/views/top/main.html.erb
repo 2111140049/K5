@@ -41,10 +41,10 @@
             <%= link_to ' もっと見る', 'top/main' %>
         </y2>
         <ul></ul>
-             <% if session[:login_uid]!=nil %>
-        <form action="top/new" >
-            <button type="submit">ツイートする</button>
-        </form>
+        <% if session[:login_uid]!=nil %>
+            <form action="top/new" >
+                <button type="submit">ツイートする</button>
+            </form>
         <% else %>
         <% end %>
         </ul>
