@@ -81,7 +81,7 @@ class TopController < ApplicationController
             #正常
             require 'bcrypt'
             newpass = BCrypt::Password.create(params[:pass])
-            use=User.new(uid: params[:uid],pass:  newpass, age:  params[:age])
+            use=User.new(uid: params[:uid],pass:  newpass)
             use.save
             @tweets=Tweet.all
             render "main"
