@@ -30,6 +30,7 @@
           <% if session[:login_uid]!=nil %>
                 <div id="user-profile" class="visible">
                   <%= link_to 'ログアウト',  '/top_logout_path'  %>
+                  
                 </div>
           <% else %>
                     <%= link_to 'ログイン', '/login' %>

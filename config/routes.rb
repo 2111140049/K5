@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "/top/top_logout_path"
   get '/top_logout_path', to: 'top#top_logout_path', as: 'top_logout_path'
   #get '/likes', to: 'likes#create' 
-  post 'top/new'
+  post 'top/new',to:'top#new'
   post '/top/cID',to:'top#cID'
   get '/cID', to: 'top#cID'
   
@@ -12,8 +12,8 @@ Rails.application.routes.draw do
  # get '/like/:id', to: 'likes#destroy', as: 'like'
   get '/likes', to: 'likes#destroy', as: 'like'
   
-   post 'top/login'
-   get '/login', to: 'top#login'
+   post 'top/login', to: 'top#login'
+   get '/login', to: 'top#login', as: 'flogin'
   
   get 'top/main',to: 'top#main'
   root 'top#main'

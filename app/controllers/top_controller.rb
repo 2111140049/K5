@@ -42,26 +42,36 @@ class TopController < ApplicationController
         flash[:notice] = '1レコード更新しました'
         redirect_to '/'
       else
-        render 'edit'
+        render 'main'
       end
     end
     #_____________tweet _________
     
+    def flogin
+        render "login"
+    end
     def login
         @tweets=Tweet.all
         require 'bcrypt'
-
-        if User.find_by(uid: params[:uid]) 
-            user =User.find_by(uid: params[:uid])
+        if params[:pass]==nil
             
-            if BCrypt::Password.new(user.pass) == params[:pass]
-                session[:login_uid] = params[:uid]
-                render "login"
-              else
-                 render "main"
+            render "login"
+        else
+            if User.find_by(uid: params[:uid]) 
+                user =User.find_by(uid: params[:uid])
+                
+                if BCrypt::Password.new(user.pass)== params[:pass]
+                    session[:login_uid] = params[:uid]
+                      logger.debug("s")
+                    render "main"
+                else
+                        logger.debug("w")
+                     render "login"
+                end
+                
             end
-            
         end
+        
     end
     def cID
         if User.find_by(uid: params[:uid]) 
