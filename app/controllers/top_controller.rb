@@ -1,6 +1,9 @@
 class TopController < ApplicationController
+
     
        def main
+           logger.debug( current_user)
+           logger.debug( "main")
            #use=User.new(uid: 1,pass: 'one',age: 99)
         if session[:login_uid]!=nil
             @tweets=Tweet.all
@@ -11,6 +14,9 @@ class TopController < ApplicationController
 
         end
     end
+    
+        
+
     #___________tweet__________
     def new
          logger.debug("nn")
@@ -63,8 +69,8 @@ class TopController < ApplicationController
                 user =User.find_by(uid: params[:uid])
                 
                 if BCrypt::Password.new(user.pass)== params[:pass]
-                    session[:login_uid] = params[:uid]
-                      logger.debug("s")
+                    session[:login_uid]= params[:uid]
+                      logger.debug("login_go")
                        redirect_to '/'
                 else
           
@@ -81,12 +87,20 @@ class TopController < ApplicationController
             render "cID"
         else
             #正常
-            require 'bcrypt'
-            newpass = BCrypt::Password.create(params[:pass])
-            use=User.new(uid: params[:uid],pass:  newpass)
-            use.save
-            @tweets=Tweet.all
-            render "main"
+              require 'bcrypt'
+            #newpass = BCrypt::Password.create(params[:pass])
+           @user = User.new(
+                            uid: params[:uid],
+                            password: params[:password],
+                            password_confirmation: params[:password_confirmation])
+            if @user.save
+                @tweets=Tweet.all
+                redirect_to "/"
+            else
+                render 'cID'
+            end
+            
+ 
         end
     end
 
@@ -96,5 +110,5 @@ class TopController < ApplicationController
         redirect_to top_main_path
     end
     
-    
+
 end

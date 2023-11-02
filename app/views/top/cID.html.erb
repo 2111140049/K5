@@ -1,7 +1,13 @@
 <%= form_tag '/top/cID', method: :post, data: { turbo: false } do %>
+    <p>
     <%= label_tag :uid, 'ユーザーID' %>
     <%= text_field_tag :uid %>
-    <%= label_tag :pass, 'パスワード' %>
-    <%= password_field_tag :pass %>
-    <%= submit_tag '登録' %>
+    <%= label_tag :password, 'パスワード' %>
+    <%= password_field_tag :password %>
+    </p>
+    <p>
+    <%= label_tag  :password_confirmation, 'パスワード(確認)' %>
+    <%= password_field_tag :password_confirmation %>
+    </p>
+     <%= submit_tag '登録' %>
 <% end %>

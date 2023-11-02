@@ -27,7 +27,7 @@
         
         
        <y2>
-          <% if session[:login_uid]!=nil %>
+          <% if current_user %>
                 <div id="user-profile" class="visible">
                   <%= link_to 'ログアウト',  '/top_logout_path'  %>
                   
@@ -41,7 +41,7 @@
             <%= link_to ' もっと見る', 'top/main' %>
         </y2>
         <ul></ul>
-        <% if session[:login_uid]!=nil %>
+        <% if  current_user %>
             <form action="top/new" >
                 <button type="submit">ツイートする</button>
             </form>
@@ -70,7 +70,7 @@
             <ul></ul>
                 <%= e.message %>
             <ul></ul>
-              <% if session[:login_uid]!=nil %>
+              <% if  current_user %>
                 <div id="user-profile" class="visible">
                 <%= link_to 'いいね', likes_path(tweet_id: e.id), method: :post %>
                 <%= link_to 'いいね削除', like_path(e), method: :get %>
